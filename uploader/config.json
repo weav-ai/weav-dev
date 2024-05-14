@@ -1,0 +1,9 @@
+{
+    "config": {
+        "source_file_folder": "path_to_your_files",
+        "destination_folder_id": "1234",
+        "base_weav_url": "https://yourweavai.com", 
+        "token": "TOKEN", 
+        "allowed_file_types": ["pdf", "docx", "pptx", "xlsx", "txt", "jpg", "jpeg", "png", "csv"]
+    }
+}
