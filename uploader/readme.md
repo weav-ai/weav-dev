@@ -7,13 +7,17 @@ This is the files uploader for weav.ai.
 All configurations needed are in the file config.json. 
 
 You must specify the following configurations
+
 - source_file_folder
 - base_weav_url
 - token
 
 You may specify
+
 - destination_folder_id
 - allowed_file_types
+- upload_subfolder (default is true)
+- folder_tags (add folder names as tags for documents)
 
 ## Running the uploader
 
