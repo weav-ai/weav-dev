@@ -13,7 +13,7 @@ class Config:
     def get(self, key):
         return self.config.get(key)
 
-def get_source_files(source_files_folder):
+def get_source_files(source_files_folder, upload_subfolders=False):
     print(f"Getting files from {source_files_folder}")
     # check if the folder exists
     if not os.path.exists(source_files_folder):
@@ -21,10 +21,14 @@ def get_source_files(source_files_folder):
         return None
 
     # get a list of all files in the folder and subfolders
+    if upload_subfolders:
+        file_list = [os.path.join(root, file) for root, dirs, files in os.walk(source_files_folder) for file in files]
+    else:
+        file_list = [os.path.join(source_files_folder, file) for file in os.listdir(source_files_folder) if os.path.isfile(os.path.join(source_files_folder, file))]
+    print(f"Files found: {file_list}")
+    return file_list
 
-    return [os.path.join(root, file) for root, dirs, files in os.walk(source_files_folder) for file in files]
-
-def upload_files(files_list, token, base_weav_url, destination_folder_id, allowed_file_types):
+def upload_files(files_list, token, base_weav_url, destination_folder_id, allowed_file_types, folder_tags=False):
     
     print(f"files to upload: {files_list}")
     url = f"{base_weav_url}/file-service/documents/"
@@ -66,30 +70,30 @@ def upload_files(files_list, token, base_weav_url, destination_folder_id, allowe
             print(f"Error opening file {file}. {e}\nSkipping....")
         
         # get the root directory and subdirectories as a list, and add them as tags
+        if folder_tags:
+            tags = os.path.dirname(file).split('/')
+            tags = [tag for tag in tags if tag]
+            tags_data = {"tags_to_add": tags}
 
-        tags = os.path.dirname(file).split('/')
-        tags = [tag for tag in tags if tag]
-        tags_data = {"tags_to_add": tags}
+            print(f"Tags: {tags}")
 
-        print(f"Tags: {tags}")
-
-        # add tags to the file
-        file_id = response.json().get('_id')
-        patch_url = f"{base_weav_url}/file-service/documents/{file_id}/tags"
-        patch_headers = {
-            'accept': 'application/json',
-            'Authorization': f"Bearer {token}",
-            'Content-Type': 'application/json'
-        }
-        try:
-            patch_response = requests.patch(patch_url, headers=patch_headers, json=tags_data)
-            if patch_response.status_code == 200:
-                print(f"Tags added to file {file}")
-            else:
-                print(f"Error adding tags to file {file}. Status code: {patch_response.status_code}")
-                print(patch_response.json())
-        except Exception as e:
-            print(f"Error adding tags to file {file}. {e}")        
+            # add tags to the file
+            file_id = response.json().get('_id')
+            patch_url = f"{base_weav_url}/file-service/documents/{file_id}/tags"
+            patch_headers = {
+                'accept': 'application/json',
+                'Authorization': f"Bearer {token}",
+                'Content-Type': 'application/json'
+            }
+            try:
+                patch_response = requests.patch(patch_url, headers=patch_headers, json=tags_data)
+                if patch_response.status_code == 200:
+                    print(f"Tags added to file {file}")
+                else:
+                    print(f"Error adding tags to file {file}. Status code: {patch_response.status_code}")
+                    print(patch_response.json())
+            except Exception as e:
+                print(f"Error adding tags to file {file}. {e}")        
 
 
 def main():
@@ -101,14 +105,16 @@ def main():
         destination_folder_id = config.get('destination_folder_id')
         allowed_file_types = config.get('allowed_file_types')
         source_files_folder = config.get('source_file_folder')
+        upload_subfolders = config.get('upload_subfolders')
+        folder_tags = config.get('folder_tags')
     except KeyError:
         print("Config file is missing required fields.\nIt should contain the following fields: token, base_weav_url, destination_folder_id, allowed_file_types")
         return
     
-    source_files_list = get_source_files(source_files_folder)
+    source_files_list = get_source_files(source_files_folder, upload_subfolders)
 
     if source_files_list:
-        upload_files(source_files_list, token, base_weav_url, destination_folder_id, allowed_file_types)
+        upload_files(source_files_list, token, base_weav_url, destination_folder_id, allowed_file_types, folder_tags)
 
 if __name__ == "__main__":
     main()
