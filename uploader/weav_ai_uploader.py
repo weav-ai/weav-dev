@@ -20,8 +20,9 @@ def get_source_files(source_files_folder):
         print(f"Folder {source_files_folder} does not exist.")
         return None
 
-    # get a list of all files in the folder
-    return [os.path.join(source_files_folder, file) for file in os.listdir(source_files_folder)]
+    # get a list of all files in the folder and subfolders
+
+    return [os.path.join(root, file) for root, dirs, files in os.walk(source_files_folder) for file in files]
 
 def upload_files(files_list, token, base_weav_url, destination_folder_id, allowed_file_types):
     
@@ -44,21 +45,52 @@ def upload_files(files_list, token, base_weav_url, destination_folder_id, allowe
             continue
         try:
             with open(file, 'rb') as f:
-                # print(f"Uploading file {file}")
+                print(f"Uploading file {file}")
                 # print(os.path.basename(file))
                 files = {"file_uploaded": (os.path.basename(file), f, 'application/pdf')}
                 try:
                     response = requests.post(url, headers=headers, files=files, data=data)
-                    # print(response.json())
+                    print(response.json())
                     # print(response.status_code)
                     if response.status_code == 200:
                         print(f"File {file} uploaded successfully.")
+                    else:
+                        print(f"Error uploading file {file}. Status code: {response.status_code}")
+                        print(response.json())
+                        continue
                 except Exception as e:
                     print(f"Error uploading file {file}. {e}\nSkipping....")
         except FileNotFoundError:
             print(f"File {file} not found. Skipping....")
         except Exception as e:
             print(f"Error opening file {file}. {e}\nSkipping....")
+        
+        # get the root directory and subdirectories as a list, and add them as tags
+
+        tags = os.path.dirname(file).split('/')
+        tags = [tag for tag in tags if tag]
+        tags_data = {"tags_to_add": tags}
+
+        print(f"Tags: {tags}")
+
+        # add tags to the file
+        file_id = response.json().get('_id')
+        patch_url = f"{base_weav_url}/file-service/documents/{file_id}/tags"
+        patch_headers = {
+            'accept': 'application/json',
+            'Authorization': f"Bearer {token}",
+            'Content-Type': 'application/json'
+        }
+        try:
+            patch_response = requests.patch(patch_url, headers=patch_headers, json=tags_data)
+            if patch_response.status_code == 200:
+                print(f"Tags added to file {file}")
+            else:
+                print(f"Error adding tags to file {file}. Status code: {patch_response.status_code}")
+                print(patch_response.json())
+        except Exception as e:
+            print(f"Error adding tags to file {file}. {e}")        
+
 
 def main():
     
