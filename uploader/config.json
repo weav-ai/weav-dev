@@ -3,7 +3,7 @@
         "source_file_folder": "data",
         "destination_folder_id": "1234",
         "base_weav_url": "https://yourdomain.weav.ai", 
-        "token": "TOKEN.eyJzdWIiOiJhdXRoMHw2NTVkODhlOTMxMTA4ZmQxYmExNmYyZTQiLCJlbWFpbCI6InBlZXl1c2grdGVzdDExQHdlYXYuYWkiLCJwZXJtaXNzaW9ucyI6WyJtYXhfZGF5c19hbGxvd2VkOjEwMDAiLCJtYXhfZG9jdW1lbnRfc2l6ZV9tYjoxMCIsIm1heF9kb2N1bWVudHNfdXBsb2FkOjEwMDAwMCIsInVzZXJtYW5hZ2VtZW50X2FjY2VzczplZGl0Iiwic3lzdGVtX3Byb21wdF9tYW5hZ2VtZW50X2FjY2Vzczp2aWV3IiwibWFuYWdlX3R5cGVfbGlzdHM6VHJ1ZSIsImNyZWF0ZV9yZXBvcnRfYWxsb3dlZDpUcnVlIiwic2hhcmluZ19hbGxvd2VkOlRydWUiLCJpbnRlcm5ldF9zZWFyY2hfYWxsb3dlZDpUcnVlIiwiY29weV90b2tlbl9hbGxvd2VkOlRydWUiLCJjaGF0X2xvZ3NfZXhwb3J0X2FsbG93ZWQ6VHJ1ZSIsInVwZGF0ZV9jb25maWd1cmF0aW9uX2FsbG93ZWQ6VHJ1ZSJdLCJ0eXBlIjoidXNlclRva2VuIiwiYXVkIjoid2Vhdi1kb2N1bWVudC1jb3BpbG90IiwiaXNzIjoid2Vhdi11c2VybWFuYWdlbWVudCIsImlhdCI6MTcxNjQ4NTk1MywiZXhwIjoxNzE2NTcyMzUzfQ.QRwGs8k3WFfguhx0Xua0Qn4wtCfD53FNTkmaWBZygskTJNn79rEd7l9Bzl7NQinJv8We_tZKQd5agLhDA_PmCzVumRTLaCD_88xjzjyO4lxTa8OzD9VpJQa_VWAHyjGCEOzt0ht1cbQ5uw6oKR2zy4N7FqSRO7v-igUI-Xk4Ht9nAqWh6ELy7Is4NERTIYR0_bQERFh27Cxu61WNOJitK-LFkrniVgEfCewae5TjPsIClab4CeT-sCLZsVF-yGWytiwCEP3695G8AjRBFJeYWxeUai8Auix57MS3HXNeZ3IBHi-5u17-DkhSFsF1EV4GDzXuveSiPkP0Fp4jvyRs5FE25fKS2IUQU3i46JSLXL1kZP6M7vrX2zUket_D6VQzuocx4nvfnUhA9xSaThoy1Z0JM-uq1PG4yGC9DajFna2_hWwIIXr9n8gHY0iWFvIO6rKL24Izz_yOJIXhVWTRyIo_ZtQT7qWhByr0uoZr8y6AvFq9U37xM_Nac0WtfUj_QZZboJ3iHeH_Bgsjmp4VQLZX-SR-GLWLbWno2mTf8t93qi1u4jn5TMAV8kO5SPjEv6PT69MrYiPECPr5xzmMw9T44NDm9nWRtLLLJ9y_qDkVlkgIKMqrv-RwPAOh7qvJMsuEIKRMHJs2dJOITnP14sMfpMszKsMgCp54sRzSJfk", 
+        "token": "TOKEN",
         "allowed_file_types": ["pdf", "docx", "pptx", "xlsx", "txt", "jpg", "jpeg", "png", "csv"], 
         "folder_tags": true,
         "upload_subfolders": true
