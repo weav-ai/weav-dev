@@ -1,0 +1,7 @@
+{
+    "config": {
+        "base_weav_url": "https://dev2.copilot.weav.ai", 
+        "token": "TOKEN", 
+        "destination_folder_id": "66306d0f6f8e2e9d6a3925ad"
+    }
+}
