@@ -13,7 +13,7 @@ class Config:
     def get(self, key):
         return self.config.get(key)
 
-def get_source_files(source_files_folder, upload_subfolders=False):
+def get_source_files(source_files_folder, upload_subfolders=False, ignore_files=[]):
     print(f"Getting files from {source_files_folder}")
     # check if the folder exists
     if not os.path.exists(source_files_folder):
@@ -26,6 +26,11 @@ def get_source_files(source_files_folder, upload_subfolders=False):
     else:
         file_list = [os.path.join(source_files_folder, file) for file in os.listdir(source_files_folder) if os.path.isfile(os.path.join(source_files_folder, file))]
     print(f"Files found: {file_list}")
+    
+    # If the file names contain any part of the string in ignore_files list, remove them
+    if ignore_files:
+        file_list = [file for file in file_list if not any(ignore in file for ignore in ignore_files)]
+
     return file_list
 
 def upload_files(files_list, token, base_weav_url, destination_folder_id, allowed_file_types, folder_tags=False):
@@ -107,11 +112,12 @@ def main():
         source_files_folder = config.get('source_file_folder')
         upload_subfolders = config.get('upload_subfolders')
         folder_tags = config.get('folder_tags')
+        ignore_files = config.get('ignore_files')
     except KeyError:
         print("Config file is missing required fields.\nIt should contain the following fields: token, base_weav_url, destination_folder_id, allowed_file_types")
         return
     
-    source_files_list = get_source_files(source_files_folder, upload_subfolders)
+    source_files_list = get_source_files(source_files_folder, upload_subfolders, ignore_files)
 
     if source_files_list:
         upload_files(source_files_list, token, base_weav_url, destination_folder_id, allowed_file_types, folder_tags)

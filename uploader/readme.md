@@ -18,6 +18,7 @@ You may specify
 - allowed_file_types
 - upload_subfolder (default is true)
 - folder_tags (add folder names as tags for documents)
+- ignore_files (add strings that would ignore the files names that contain them. Case sensitive.)
 
 ## Running the uploader
 

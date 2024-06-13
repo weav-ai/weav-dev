@@ -2,10 +2,11 @@
     "config": {
         "source_file_folder": "data",
         "destination_folder_id": "1234",
-        "base_weav_url": "https://yourdomain.weav.ai", 
+        "base_weav_url": "https://yourdomain.com", 
         "token": "TOKEN",
         "allowed_file_types": ["pdf", "docx", "pptx", "xlsx", "txt", "jpg", "jpeg", "png", "csv"], 
         "folder_tags": true,
-        "upload_subfolders": true
+        "upload_subfolders": true,
+        "ignore_files": ["AAPL", "file2"]
     }
 }
