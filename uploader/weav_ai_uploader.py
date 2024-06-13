@@ -33,6 +33,29 @@ def get_source_files(source_files_folder, upload_subfolders=False, ignore_files=
 
     return file_list
 
+def get_mime_type(file):
+    ext = os.path.splitext(file)[1]
+    if ext == '.pdf':
+        return 'application/pdf'
+    elif ext == '.tiff' or ext == '.tif':
+        return 'image/tiff'
+    elif ext == '.xlsx' or ext == '.xls':
+        return 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    elif ext == '.docx' or ext == '.doc':
+        return 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    elif ext == '.pptx' or ext == '.ppt':
+        return 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    elif ext == '.jpg' or ext == '.jpeg':
+        return 'image/jpeg'
+    elif ext == '.png':
+        return 'image/png'
+    elif ext == '.txt':
+        return 'text/plain'
+    elif ext == '.csv':
+        return 'text/csv'
+    else:
+        return 'application/octet-stream'  # generic binary data
+
 def upload_files(files_list, token, base_weav_url, destination_folder_id, allowed_file_types, folder_tags=False):
     
     print(f"files to upload: {files_list}")
@@ -55,8 +78,9 @@ def upload_files(files_list, token, base_weav_url, destination_folder_id, allowe
         try:
             with open(file, 'rb') as f:
                 print(f"Uploading file {file}")
+                mime_type = get_mime_type(file)
                 # print(os.path.basename(file))
-                files = {"file_uploaded": (os.path.basename(file), f, 'application/pdf')}
+                files = {"file_uploaded": (os.path.basename(file), f, mime_type)}
                 try:
                     response = requests.post(url, headers=headers, files=files, data=data)
                     print(response.json())
@@ -76,10 +100,15 @@ def upload_files(files_list, token, base_weav_url, destination_folder_id, allowe
         
         # get the root directory and subdirectories as a list, and add them as tags
         if folder_tags:
-            tags = os.path.dirname(file).split('/')
+
+            tags = []
+            if '/' in file:
+                tags = os.path.dirname(file).split('/')
+            elif '\\' in file:
+                tags = os.path.dirname(file).split('\\')
             tags = [tag for tag in tags if tag]
             tags_data = {"tags_to_add": tags}
-
+    
             print(f"Tags: {tags}")
 
             # add tags to the file
