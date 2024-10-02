@@ -7,32 +7,16 @@ This repository contains scripts for interacting with the Weav AI platform, incl
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/weav-ai/weavai-developer-library.git
+git clone https://github.com/weav-ai/weav-dev.git
 ```
 
-### 2. Change to the `scripts` branch
-
-```bash
-git fetch
-```
-
-```bash
-git checkout scripts
-```
-
-### 3. Move to the scripts folder
-
-```bash
-cd scripts
-```
-
-### 4. Install requirements
+### 2. Install requirements
 
 ```bash
 	pip3 install -r requirements.txt
 ```
 
-### 5. Add variables to `.env` file
+### 3. Add variables to `.env` file
 
 ```bash
 ENV = "https://<env_name>
