@@ -1,0 +1,12 @@
+{
+    "config": {
+        "source_file_folder": "/Users/swalter/Desktop/docuemnts_to_test/blub",
+        "destination_folder_id": "66bdb2c3683f39978f62a7a1",
+        "base_weav_url": "https://dev.copilot.weav.ai",
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnb29nbGUtb2F1dGgyfDExMDAwNTAwODQ3ODgyODk3Mzk4MyIsImVtYWlsIjoic2ViYXN0aWFuQHdlYXYuYWkiLCJwZXJtaXNzaW9ucyI6WyJtYXhfZGF5c19hbGxvd2VkOjEwMDAiLCJtYXhfZG9jdW1lbnRfc2l6ZV9tYjoxMCIsIm1heF9kb2N1bWVudHNfdXBsb2FkOjEwMDAwMCIsInVzZXJtYW5hZ2VtZW50X2FjY2VzczplZGl0Iiwic3lzdGVtX3Byb21wdF9tYW5hZ2VtZW50X2FjY2Vzczp2aWV3IiwibWFuYWdlX3R5cGVfbGlzdHM6VHJ1ZSIsImNyZWF0ZV9yZXBvcnRfYWxsb3dlZDpUcnVlIiwic2hhcmluZ19hbGxvd2VkOlRydWUiLCJpbnRlcm5ldF9zZWFyY2hfYWxsb3dlZDpUcnVlIiwiY29weV90b2tlbl9hbGxvd2VkOlRydWUiLCJkZWZhdWx0X3VpX2FsbG93ZWQ6VHJ1ZSIsImNoYXRfbG9nc19leHBvcnRfYWxsb3dlZDpUcnVlIiwidXBkYXRlX2NvbmZpZ3VyYXRpb25fYWxsb3dlZDpUcnVlIiwidXBkYXRlX3dvcmtmbG93X2FsbG93ZWQ6VHJ1ZSIsImFuYWx5dGljc19hY2Nlc3M6YWxsIl0sInR5cGUiOiJ1c2VyVG9rZW4iLCJhdWQiOiJ3ZWF2LWRvY3VtZW50LWNvcGlsb3QiLCJpc3MiOiJ3ZWF2LXVzZXJtYW5hZ2VtZW50IiwiaWF0IjoxNzI0MzQwOTY2LCJleHAiOjE3MjQ0MjczNjZ9.jibboWKmuA7WdZxWUZ4DSYw45KKDqkNd_dXJ0UVEBQWpbVqT1AVV3Z_2PfePI9TsJ5RE1p-WaEV5c05i-QfTFTrBtukU4MfeaY5As3p_tdqLe93XXPtEvj22MU4hh_vmCXjTs5Ox_LsMCRPrHV1cHIRig1UGaUEZLraWXptZG50MDiAb0IpnfeDiCw6IA8id5GJhg1Zf4XJs6QODQW10aEhskiz787ZJqXwi59sKT2-GUgNfOsJFMOBt65IhDIcSfEBP4w6lBbFIRg04d3Py2eNa1we8a013xrWSqIhWnwKMd-1_Id_yq5APgNSdkLtWeMVtVvyX8kOb-jp9KQjE_XbXZhTiGI5DiDY4H8_m9JhnHsNaQbUXFNVHt0Bf3ekN6BUJ-m2QSzWNV7jUbiOFZb38BBuXsIVxBfvl0UBzLk2ycj7FmQUPXBfD2I0jNJBmBcSslGD-FOwOTivuASlMSL-lIGeXFaKNWkHJjV4fn2FODkW2s3t3gT6nTAxVfI5Ik64zyTaxb0-kwl_qyjE-l6XGjLPjh7gfwEazAv_vBZQe4B7RIoRElsrENJIGzIbnZAu3dEiqeVYYgff-8K1RL_-FUZDIve-41LGcF8-bEWQcpb7xwaj7uYSEAns2saaeupI8wsLsnJLaUcCPUiFkI0iAWxlLQkj4oB2m3d-ZIp4",
+        "allowed_file_types": ["pdf", "docx", "pptx", "xlsx", "txt", "jpg", "jpeg", "png", "csv"], 
+        "folder_tags": true,
+        "upload_subfolders": true,
+        "ignore_files": ["AAPL", "file2"]
+    }
+}
