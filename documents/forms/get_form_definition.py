@@ -21,4 +21,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     form_definition_response = form_operation.get_form_definition(form_id=args.form_id)
-    pprint(form_definition_response.dict())
+    pprint(form_definition_response.model_dump())

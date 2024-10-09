@@ -4,10 +4,10 @@ from chats.models import (
     ChatLogsResponse,
     ChatHistoryResponse,
     ChatResponse,
+    ChatRequest,
 )
-from models import ChatRequest
 
-from exceptions import ChatServiceException
+from chats.exceptions import ChatServiceException
 import requests
 
 
@@ -73,7 +73,7 @@ class ChatService:
         url = f"{self.configs.base_url}/{self.endpoints.CHAT}"
         response = requests.post(
             url=url,
-            json=chat_request.dict(),
+            json=chat_request.model_dump(),
             headers={"Authorization": f"Bearer {self.configs.auth_token}"},
         )
         if response.status_code == 401:

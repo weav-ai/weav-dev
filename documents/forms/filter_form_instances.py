@@ -61,7 +61,7 @@ if __name__ == "__main__":
         type=str,
         default="",
         required=False,
-        help="Only instance of this form definition",
+        help="Unique identifier for the document",
     )
     parser.add_argument(
         "--only_latest",
@@ -85,6 +85,15 @@ if __name__ == "__main__":
         required=False,
         help="Max fetch size",
     )
+
+    parser.add_argument(
+        "--all",
+        type=str,
+        choices=BOOL_CHOICES,
+        default="False",
+        required=False,
+        help="If set to true, all instances are fetched",
+    )
     args = parser.parse_args()
 
     body = FilterFormInstanceRequest(
@@ -97,6 +106,7 @@ if __name__ == "__main__":
         only_latest=get_bool_value(args.only_latest),
         skip=args.skip,
         limit=args.limit,
+        all=get_bool_value(args.all),
     )
     form_create_response = form_operation.filter_form_instances(form_data=body)
-    print(form_create_response.dict())
+    print(form_create_response.model_dump())

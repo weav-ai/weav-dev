@@ -25,6 +25,6 @@ if __name__ == "__main__":
         form_delete_response = form_operation.delete_form_definition(
             form_id=args.form_id
         )
-        pprint(form_delete_response.dict())
+        pprint(form_delete_response.model_dump())
     else:
         print("Cancelled operation.")

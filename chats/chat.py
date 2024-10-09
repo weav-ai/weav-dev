@@ -1,4 +1,4 @@
-# python3 chats/chat.py --chat_id 66e0fba3089fbd21c4d --user_input "Summarize this doc?" --file_id 66e0fba3089fbd21c4dd80c3 --stream false
+# python3 chats/chat.py --chat_id 66e0fba3089fbd21c4d --user_input "Summarize this doc?" --file_id 66e0fba3089fbd21c4dd80c3
 
 import sys
 import os
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         "--user_input",
         type=str,
         required=True,
-        help="Skip the first N messages",
+        help="The User request",
     )
 
     args = parser.parse_args()
@@ -47,4 +47,4 @@ if __name__ == "__main__":
     )
 
     chat_response = chat_service.chat(chat_request=body)
-    pprint(chat_response.dict())
+    pprint(chat_response.model_dump())

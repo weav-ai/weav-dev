@@ -1,3 +1,5 @@
+# python3 agents/get_agent_types.py
+
 import sys
 import os
 from pprint import pprint

@@ -1,4 +1,4 @@
-# python3 workflows/get_workflow_status.py --workflow_id dagtasktest --workflow_run_id 66df87ec2b1edfc0dc3b556f_2461160a-117f-45ac-9fa0-f5590d977882
+# python3 workflows/get_workflow_status.py --workflow_id process_form_workflow --workflow_run_id 66fe1752927ce8c0ebda42b9_0ac33b46-e7f6-44ef-894f-5562483e547d
 
 import sys
 import os
@@ -44,4 +44,4 @@ if __name__ == "__main__":
         workflow_id=args.workflow_id,
         workflow_run_id=args.workflow_run_id,
     )
-    pprint(workflow_status_response.dict())
+    pprint(workflow_status_response.model_dump())

@@ -1,4 +1,4 @@
-# python3 documents/forms/download_query_result.py --form_id 66f45d0db1d0dfb13c9974c3 --query "Test query"
+# python3 documents/forms/download_query_result.py --form_id 66f3d44eeb87303bc52bb9b4
 
 import sys
 import os
@@ -26,14 +26,24 @@ if __name__ == "__main__":
         help="Download format",
     )
     parser.add_argument(
-        "--query", type=str, default="", required=False, help="Search query"
+        "--query",
+        default="",
+        type=str,
+        required=False,
+        help="This string is matched in category and description",
     )
 
     args = parser.parse_args()
 
-    data = DownloadQueryResultRequest(query=args.query)
+    if args.query:
+        data = DownloadQueryResultRequest(query=args.query)
+    else:
+        data = DownloadQueryResultRequest()
 
     download_query_response = form_operation.download_query_result(
         form_id=args.form_id, download_format=args.download_format, form_data=data
     )
-    pprint(download_query_response.dict())
+    if args.download_format == "CSV":
+        print(download_query_response)
+    else:
+        pprint(download_query_response.model_dump())

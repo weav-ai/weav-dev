@@ -33,6 +33,7 @@ class ServiceType(str, Enum):
     WORKFLOWS = "workflows"
     AGENT = "agent"
     DOCUMENT = "document"
+    CHATS = "chats"
 
 
 class ConfigModel(BaseModel):
@@ -54,16 +55,18 @@ class BaseURLMapper:
                 ServiceType.WORKFLOWS: "http://localhost:7036",
                 ServiceType.AGENT: "http://localhost:7031",
                 ServiceType.DOCUMENT: "http://localhost:7015",
+                ServiceType.CHATS: "http://localhost:7030",
             },
             EnvTypes.OTHER: {
                 ServiceType.AGENT: "/agent-prototype",
                 ServiceType.WORKFLOWS: "/workflow-service",
                 ServiceType.DOCUMENT: "/file-service",
+                ServiceType.CHATS: "/chat-service",
             },
         }
 
     def get_base_url(
-        self, env: EnvTypes, service: ServiceType, environment: Optional[str] = None
+        self, env: EnvTypes, service: ServiceType, environment: Optional[str] = ""
     ) -> str:
         if env == EnvTypes.LOCAL:
             return self.url_mapping.get(env, "Unknown environment").get(service)
@@ -77,7 +80,7 @@ class LoadConfigurations:
     def __init__(self, env_file_path: str = ENV_PATH):
         if not os.path.exists(env_file_path):
             raise ValueError("No environment file found")
-        load_dotenv(env_file_path)
+        load_dotenv(env_file_path, override=True)
 
     def __convert_env_str_to_enum(self, value) -> str:
         return EnvTypes.from_str(value) if value == "local" else value
@@ -111,6 +114,7 @@ class ServiceEndpoints:
         self.RERUN_WORKFLOW = "workflows/{WORKFLOW_NAME}/re_run"
         self.RUN_WORKFLOW = "/workflows/{WORKFLOW_NAME}/run"
         self.WORKFLOW_STATUS = "/workflows/{WORKFLOW_ID}/{WORKFLOW_RUN_ID}/status"
+        self.WORKFLOW_RUNS = "/workflows/workflow_runs"
         self.GET_AGENT_TYPES = "agent/types"
         self.GET_AGENT_RESPONSE = "agent"
         self.GET_CHAT_HISTORY = "agent/chat_history?chat_id={CHAT_ID}"
@@ -123,3 +127,20 @@ class ServiceEndpoints:
         self.UPDATE_FORM_DEFINITON = "/forms/{FORM_ID}"
         self.DELETE_FORM_DEFINITON = "/forms/{FORM_ID}"
         self.DOWNLOAD_QUERY_RESULT = "forms/{FORM_ID}/analytics/download"
+        self.CREATE_DOCUMENT = "/documents/"
+        self.GET_PAGE = "documents/{DOC_ID}/pages/{PAGE_NUMBER}"
+        self.GET_PAGE_TEXT_AND_WORDS = "documents/{DOC_ID}/pages/{PAGE_NUMBER}/words"
+        self.GET_PAGE_LEVEL_STATUS = "documents/{DOC_ID}/pages/status"
+        self.GET_DOCUMENT_SUMMARY_STATUS = "documents/{DOC_ID}/summary"
+        self.GET_DOCUMENT = "documents/{DOC_ID}"
+        self.GET_DOCUMENT_HIERARCHY = "documents/{DOC_ID}/hierarchy"
+        self.DOWNLOAD_FORM_INSTANCE = "documents/{DOC_ID}/form/"
+        self.GET_DOCUMENT_CATEGORIES = "documents/categories/"
+        self.GET_DOCUMENT_TAGS = "documents/tags/"
+        self.TRIGGER_DOCUMENT_SUMMARY = "documents/{DOC_ID}/summary"
+        self.CHAT_LOGS = "/chat_logs/"
+        self.CHAT_HISTORY = "/chat_history"
+        self.CHAT = "/chat"
+        self.CREATE_FOLDER = "/folders/"
+        self.GET_WRITABLE_FOLDERS = "/folders/writable-folders/"
+        self.GET_FOLDER_DEFINITION = "/folders/{FOLDER_ID}"

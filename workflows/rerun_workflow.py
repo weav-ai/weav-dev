@@ -3,6 +3,7 @@
 import sys
 import os
 import argparse
+import json
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -31,16 +32,22 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--data",
-        type=dict,
-        default={},
+        type=str,
+        default=r"{}",
         required=False,
-        help="The task which needs to be re run",
+        help="Extra parameters for the workflow",
     )
+
+    args = parser.parse_args()
+    try:
+        data = json.loads(args.data)
+    except:
+        raise Exception("Invalid data in --data")
 
     args = parser.parse_args()
 
     single_workflow_response = workflows.rerun_workflow(
         workflow_name=args.workflow_name,
-        data=WorkflowRequest(doc_id=args.doc_id, data=args.data),
+        data=WorkflowRequest(doc_id=args.doc_id, data=data),
     )
-    pprint(single_workflow_response.dict())
+    pprint(single_workflow_response.model_dump())

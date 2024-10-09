@@ -29,4 +29,4 @@ if __name__ == "__main__":
     all_workflows_response = workflows.get_all_workflows(
         show_internal_steps=get_bool_value(args.show_internal_steps)
     )
-    pprint(all_workflows_response.dict())
+    pprint(all_workflows_response.model_dump())

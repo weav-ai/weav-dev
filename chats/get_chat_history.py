@@ -19,9 +19,9 @@ if __name__ == "__main__":
         "--chat_id",
         type=str,
         required=True,
-        help="Skip the first N messages",
+        help="Chat ID",
     )
     args = parser.parse_args()
 
     chat_history_response = chat_service.get_chat_history(chat_id=args.chat_id)
-    pprint(chat_history_response.dict())
+    pprint(chat_history_response.model_dump())

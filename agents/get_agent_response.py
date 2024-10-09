@@ -16,12 +16,10 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Provide parameters for the script.")
 
-    parser.add_argument(
-        "--user_input", type=str, required=True, help="User input text."
-    )
-    parser.add_argument("--chat_id", type=str, required=True, help="Chat ID.")
+    parser.add_argument("--user_input", type=str, required=True, help="User input text")
+    parser.add_argument("--chat_id", type=str, required=True, help="Chat ID")
 
-    parser.add_argument("--agent_type", type=str, required=True, help="Agent type.")
+    parser.add_argument("--agent_type", type=str, required=True, help="Agent type")
 
     args = parser.parse_args()
 

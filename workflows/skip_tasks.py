@@ -31,4 +31,4 @@ if __name__ == "__main__":
         workflow_name=args.workflow_name,
         data=SkipStepsInWorkflowRequest(tasks=args.tasks),
     )
-    pprint(single_workflow_response.dict())
+    pprint(single_workflow_response.model_dump())

@@ -15,7 +15,7 @@ if __name__ == "__main__":
     configs = LoadConfigurations().set_config(service=ServiceType.AGENT)
     parser = argparse.ArgumentParser(description="Provide parameters for the script.")
 
-    parser.add_argument("--chat_id", type=str, required=True, help="Chat ID.")
+    parser.add_argument("--chat_id", type=str, required=True, help="Chat ID")
 
     args = parser.parse_args()
     agent_service = AgentService(configs=configs)

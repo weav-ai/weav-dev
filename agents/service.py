@@ -1,12 +1,12 @@
 import contextlib
 from config_models import ConfigModel, ServiceEndpoints, AUTHENTICATION_FAILED_MESSAGE
-from models import (
+from agents.models import (
     GetAllAgentsResponse,
     GetAgentRequest,
     ChatHistoryResponse,
     GetAgentResponse,
 )
-from exceptions import AgentServiceException
+from agents.exceptions import AgentServiceException
 import requests
 from pydantic import ValidationError
 from typing import List
@@ -42,7 +42,7 @@ class AgentService:
         url = f"{self.configs.base_url}/{self.endpoints.GET_AGENT_RESPONSE}"
         response = requests.post(
             url=url,
-            json=get_agent_request_body.dict(),
+            json=get_agent_request_body.model_dump(),
             headers={"Authorization": f"Bearer {self.configs.auth_token}"},
         )
         if response.status_code == 401:

@@ -1,3 +1,5 @@
+# python3 documents/forms/filter_form.py --scope "all_forms" --is_searchable false --query "ANNUAL REPORT"
+
 import sys
 import os
 import argparse
@@ -32,7 +34,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--query",
         type=str,
-        required=True,
+        default="",
+        required=False,
         help="This string is matched in category and description",
     )
 
@@ -44,4 +47,4 @@ if __name__ == "__main__":
         is_searchable=get_bool_value(args.is_searchable),
     )
     form_create_response = form_operation.filter_form(form_data=body)
-    pprint(form_create_response.dict())
+    pprint(form_create_response.model_dump())

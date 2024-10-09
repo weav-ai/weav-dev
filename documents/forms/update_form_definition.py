@@ -1,9 +1,9 @@
-# python3 documents/forms/update_form_definition.py --form_id 66e9e1ad47fff0950cba17ea --name "UPDATED_NAME" --category "SECURITIES AND EXCHANGE COMMISSION" --description "I just updated the desc" --is_shared True --is_searchable True
+# python3 documents/forms/update_form_definition.py --form_id 66fe234870dd6d497d9b8ba5 --name "UPDATED_NAME" --category "SECURITIES AND EXCHANGE COMMISSION" --description "I just updated the desc" --is_shared True --is_searchable True --fields '[{"name": "Cost of revenue", "field_type": "Number", "is_array": false, "fill_by_search": false, "description": "Extract cost of revenue"}]'
 
 import sys
 import os
 import argparse
-import urllib.parse
+import json
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
@@ -37,8 +37,22 @@ if __name__ == "__main__":
         default="False",
         choices=BOOL_CHOICES,
         required=False,
-        help="Form visibility mode",
+        help="Allows the field to be searchable on the internet",
     )
+
+    parser.add_argument(
+        "--fields",
+        type=str,
+        default="[]",
+        required=False,
+        help="Form fields",
+    )
+
+    args = parser.parse_args()
+    try:
+        form_fields = json.loads(args.fields)
+    except:
+        raise Exception("Invalid data in fields")
 
     args = parser.parse_args()
     body = UpdateFormDefinitonRequest(
@@ -47,9 +61,10 @@ if __name__ == "__main__":
         description=args.description,
         is_shared=get_bool_value(args.is_shared),
         is_searchable=get_bool_value(args.is_searchable),
+        fields=form_fields,
     )
 
     form_update_response = form_operation.update_form_definition(
         form_id=args.form_id, form_data=body
     )
-    pprint(form_update_response.dict())
+    pprint(form_update_response.model_dump())

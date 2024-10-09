@@ -37,4 +37,4 @@ if __name__ == "__main__":
         show_internal_steps=get_bool_value(args.show_internal_steps),
         workflow_name=args.workflow_name,
     )
-    pprint(single_workflow_response.dict())
+    pprint(single_workflow_response.model_dump())

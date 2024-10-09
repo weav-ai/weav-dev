@@ -55,4 +55,4 @@ if __name__ == "__main__":
     )
 
     chat_log_response = chat_service.get_chat_logs(chat_logs_request=chat_logs_request)
-    pprint(chat_log_response.dict())
+    pprint(chat_log_response.model_dump())

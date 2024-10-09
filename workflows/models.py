@@ -34,9 +34,9 @@ class RunWorkflowResponse(BaseModel):
     document_id: str
     document_name: str
     in_folders: Optional[List[str]] = []
-    state: Optional[str]
-    start_date: Optional[str]
-    end_date: Optional[str]
+    state: Optional[str] = ""
+    start_date: Optional[str] = ""
+    end_date: Optional[str] = ""
     created_at: str
 
 
@@ -53,13 +53,30 @@ class Task(BaseModel):
     task_status_summary: TaskStatusSummary
     status: str
     failed_task_ids: Optional[List[int]] = []
-    start_date: Optional[datetime]
-    end_date: Optional[datetime]
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
 
 
 class WorkflowStatusResponse(BaseModel):
     status: str
     document_id: str
     tasks: Optional[List[Task]] = []
-    start_date: Optional[datetime]
-    end_date: Optional[datetime]
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+
+
+class DocumentRun(BaseModel):
+    run_id: str
+    workflow_id: str
+    document_id: str
+    document_name: str
+    in_folders: List[str]
+    state: str
+    start_date: str
+    end_date: str
+    created_at: Optional[str] = ""
+
+
+class DocumentWorkflowRunsResponse(BaseModel):
+    docs: List[DocumentRun]
+    total: int
