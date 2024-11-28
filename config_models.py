@@ -53,12 +53,12 @@ class BaseURLMapper:
         self.url_mapping = {
             EnvTypes.LOCAL: {
                 ServiceType.WORKFLOWS: "http://localhost:7036",
-                ServiceType.AGENT: "http://localhost:7031",
+                ServiceType.AGENT: "http://localhost:7052",
                 ServiceType.DOCUMENT: "http://localhost:7015",
                 ServiceType.CHATS: "http://localhost:7030",
             },
             EnvTypes.OTHER: {
-                ServiceType.AGENT: "/agent-prototype",
+                ServiceType.AGENT: "agent-service",
                 ServiceType.WORKFLOWS: "/workflow-service",
                 ServiceType.DOCUMENT: "/file-service",
                 ServiceType.CHATS: "/chat-service",
@@ -144,3 +144,6 @@ class ServiceEndpoints:
         self.CREATE_FOLDER = "/folders/"
         self.GET_WRITABLE_FOLDERS = "/folders/writable-folders/"
         self.GET_FOLDER_DEFINITION = "/folders/{FOLDER_ID}"
+        self.GET_AGENT_CONFIGURATIONS = "agents/configurations/"
+        self.GET_AGENT_RESPONSE = "/agents/"
+        self.GET_AGENT = "agents/configurations?agent_id={AGENT_ID}"
