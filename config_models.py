@@ -134,7 +134,7 @@ class ServiceEndpoints:
         self.GET_DOCUMENT_SUMMARY_STATUS = "documents/{DOC_ID}/summary"
         self.GET_DOCUMENT = "documents/{DOC_ID}"
         self.GET_DOCUMENT_HIERARCHY = "documents/{DOC_ID}/hierarchy"
-        self.DOWNLOAD_FORM_INSTANCE = "documents/{DOC_ID}/form/"
+        self.DOWNLOAD_FORM_INSTANCE = "forms/instances/?scope=all_documents&doc_id={DOC_ID}&all=true&skip=0&limit=100&use_latest_definition=true"
         self.GET_DOCUMENT_CATEGORIES = "documents/categories/"
         self.GET_DOCUMENT_TAGS = "documents/tags/"
         self.TRIGGER_DOCUMENT_SUMMARY = "documents/{DOC_ID}/summary"
